@@ -1,7 +1,8 @@
 /**
  * Created by Bret on 1/31/2016.
  */
-export interface Hero {
+export interface Link {
     id: number;
     name: string;
+    url: string;
 }

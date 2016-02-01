@@ -1,0 +1,54 @@
+{
+  "rules": {
+    "align": [
+      true,
+      "parameters",
+      "arguments",
+      "statements"
+    ],
+    "ban": false,
+    "class-name": true,
+    "curly": true,
+    "eofline": true,
+    "forin": true,
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "interface-name": true,
+    "jsdoc-format": true,
+    "label-position": true,
+    "label-undefined": true,
+    "max-line-length": [
+      true,
+      140
+    ],
+    "no-any": false,
+    "no-bitwise": true,
+    "no-eval": true,
+    "no-trailing-whitespace": true,
+    "no-unreachable": true,
+    "no-unused-expression": true,
+    "no-unused-variable": true,
+    "no-use-before-declare": true,
+    "quotemark": [
+      true,
+      "double",
+      "avoid-escape"
+    ],
+    "radix": true,
+    "semicolon": true,
+    "switch-default": true,
+    "use-strict": [
+      true,
+      "check-module",
+      "check-function"
+    ],
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-leading-underscore",
+      "ban-keywords"
+    ]
+  }
+}

@@ -1,55 +1,72 @@
-import {Component} from 'angular2/core';
-import {Hero} from './hero';
-import {HeroDetailComponent} from './hero-detail.component';
+import {Component} from "angular2/core";
+import {Link} from "./link";
+import {LinkDetailComponent} from "./link-detail.component";
+
+var LINKS:Link[] = [
+    {"id": 11, "name": "lowrey.me", "url": "http://lowrey.me/"},
+    {"id": 12, "name": "Narco", "url": ""},
+    {"id": 13, "name": "Bombasto", "url": ""},
+    {"id": 14, "name": "Celeritas", "url": ""},
+    {"id": 15, "name": "Magneta", "url": ""},
+    {"id": 16, "name": "RubberMan", "url": ""},
+    {"id": 17, "name": "Dynama", "url": ""},
+    {"id": 18, "name": "Dr IQ", "url": ""},
+    {"id": 19, "name": "Magma", "url": ""},
+    {"id": 20, "name": "Tornado", "url": ""}
+];
 
 @Component({
-    selector: 'my-app',
-    template:`
-    <h1>{{title}}</h1>
-    <h2>My Heroes</h2>
-    <ul class="heroes">
-      <li *ngFor="#hero of heroes"
-        [class.selected]="hero === selectedHero"
-        (click)="onSelect(hero)">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
-      </li>
-    </ul>
-    <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+    selector: "my-app",
+    template: `
+    <div class="container">
+    <div class="list col-sm-6">
+        <h1>{{title}}</h1>
+        <ul class="links">
+          <li *ngFor="#link of links"
+            [class.selected]="link === selectedLink"
+            (click)="onSelect(link)"
+            class="link">
+            <span class="badge">{{link.id}}</span> {{link.name}}
+          </li>
+        </ul>
+    </div>
+    <div class="detail col-sm-6">
+        <my-link-detail [link]="selectedLink"></my-link-detail>
+    </div>
+    </div>
+
   `,
-    styles:[`
+    styles: [`
     .selected {
       background-color: #CFD8DC !important;
       color: white;
     }
-    .heroes {
+    .links {
       margin: 0 0 2em 0;
       list-style-type: none;
       padding: 0;
-      width: 10em;
     }
-    .heroes li {
+    .links li {
       cursor: pointer;
       position: relative;
       left: 0;
       background-color: #EEE;
       margin: .5em;
-      padding: .3em 0em;
-      height: 1.6em;
       border-radius: 4px;
     }
-    .heroes li.selected:hover {
+    .links li.selected:hover {
       color: white;
     }
-    .heroes li:hover {
+    .links li:hover {
       color: #607D8B;
       background-color: #EEE;
       left: .1em;
     }
-    .heroes .text {
+    .links .text {
       position: relative;
       top: -3px;
     }
-    .heroes .badge {
+    .links .badge {
       display: inline-block;
       font-size: small;
       color: white;
@@ -64,26 +81,17 @@ import {HeroDetailComponent} from './hero-detail.component';
       border-radius: 4px 0px 0px 4px;
     }
   `],
-    directives: [HeroDetailComponent]
+    directives: [LinkDetailComponent]
 })
-export class AppComponent {
-    public title = 'Tour of Heroes';
-    public heroes = HEROES;
-    public selectedHero: Hero;
 
-    onSelect(hero: Hero) { this.selectedHero = hero; }
+export class AppComponent {
+    public title = "Links";
+    public links = LINKS;
+    public selectedLink:Link;
+
+    onSelect(link:Link) {
+        this.selectedLink = link;
+    }
 }
 
-var HEROES: Hero[] = [
-    { "id": 11, "name": "Mr. Nice" },
-    { "id": 12, "name": "Narco" },
-    { "id": 13, "name": "Bombasto" },
-    { "id": 14, "name": "Celeritas" },
-    { "id": 15, "name": "Magneta" },
-    { "id": 16, "name": "RubberMan" },
-    { "id": 17, "name": "Dynama" },
-    { "id": 18, "name": "Dr IQ" },
-    { "id": 19, "name": "Magma" },
-    { "id": 20, "name": "Tornado" }
-];
 
