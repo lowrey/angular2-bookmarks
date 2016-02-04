@@ -1,19 +1,7 @@
 import {Component} from "angular2/core";
 import {Link} from "./link";
+import {LinkData} from "./link-data";
 import {LinkDetailComponent} from "./link-detail.component";
-
-var LINKS:Link[] = [
-    {"id": 11, "name": "lowrey.me", "url": "http://lowrey.me/"},
-    {"id": 12, "name": "Narco", "url": ""},
-    {"id": 13, "name": "Bombasto", "url": ""},
-    {"id": 14, "name": "Celeritas", "url": ""},
-    {"id": 15, "name": "Magneta", "url": ""},
-    {"id": 16, "name": "RubberMan", "url": ""},
-    {"id": 17, "name": "Dynama", "url": ""},
-    {"id": 18, "name": "Dr IQ", "url": ""},
-    {"id": 19, "name": "Magma", "url": ""},
-    {"id": 20, "name": "Tornado", "url": ""}
-];
 
 @Component({
     selector: "my-app",
@@ -72,13 +60,13 @@ var LINKS:Link[] = [
       color: white;
       padding: 0.8em 0.7em 0em 0.7em;
       background-color: #607D8B;
-      line-height: 1em;
-      position: relative;
-      left: -1px;
-      top: -4px;
-      height: 1.8em;
+      height: 2.0em;
       margin-right: .8em;
       border-radius: 4px 0px 0px 4px;
+    }
+    .detail{
+      position: fixed;
+      right: 5px;
     }
   `],
     directives: [LinkDetailComponent]
@@ -86,7 +74,7 @@ var LINKS:Link[] = [
 
 export class AppComponent {
     public title = "Links";
-    public links = LINKS;
+    public links = new LinkData().links;
     public selectedLink:Link;
 
     onSelect(link:Link) {

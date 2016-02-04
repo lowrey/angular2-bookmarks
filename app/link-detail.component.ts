@@ -9,16 +9,16 @@ import {Link} from "./link";
     selector: "my-link-detail",
     template: `
     <div *ngIf="link">
-      <h2>{{link.name}}</h2>
+      <h2><a [href]="link.url">{{link.name}}</a></h2>
       <div><label>id: </label>{{link.id}}</div>
       <div>
         <label>url: </label>
         <input [(ngModel)]="link.url" placeholder="url"/>
       </div>
-      <div>
-        <label>link: </label>
-        <a [href]="link.url">{{link.name}}</a>
-      </div>
+      <!--<div>-->
+        <!--<label>link: </label>-->
+        <!--<a [href]="link.url">{{link.name}}</a>-->
+      <!--</div>-->
     </div>
   `,
 })
