@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Bookmarks</title>
+
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="libs/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="libs/systemjs/dist/system.src.js"></script>
+    <script src="libs/rxjs/bundles/Rx.js"></script>
+    <script src="libs/angular2/bundles/angular2.dev.js"></script>
+    <script src="libs/angular2/bundles/router.dev.js"></script>
+
+    <script>
+        System.config({
+            packages: {
+                app: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }
+            }
+        });
+        System.import('app/main')
+                .then(null, console.error.bind(console));
+    </script>
+</head>
+
+<body>
+<my-app>Loading...</my-app>
+</body>
+</html>
