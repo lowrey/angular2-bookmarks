@@ -42,7 +42,9 @@ gulp.task('build:index', function() {
         .pipe(gulp.dest('dist/libs')); 
     var copyIndex = gulp.src('client/index.html')
         .pipe(gulp.dest('dist'));
-    return [copyJsNPMDependencies, copyIndex];
+    var copyStyle = gulp.src('client/assets/**/*')
+        .pipe(gulp.dest('dist/assets'));
+    return [copyJsNPMDependencies, copyIndex, copyStyle];
 });
 
 gulp.task('build:app', function() {
@@ -54,7 +56,6 @@ gulp.task('build:app', function() {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist'));
 });
-
 
 gulp.task('build', function(callback) {
     runSequence('clean', 'build:server', 'build:index', 'build:app', callback);
