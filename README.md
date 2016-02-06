@@ -1,26 +1,10 @@
-# Angular2 Beta with Gulp, Typescript, and Express  
+# Angular2 Bookmark
 
-This uses SystemJS and a minimally configured gulpfile. This app uses HTML5 location paths.
-This app isn't meant to overwhelm you with an intensely complex gulp build system. I tried to be as explicit as possible.
-I believe it to be organized well enough for you to create a more robust app.
+A quick example program that shows how to use gulp, angular 2, and express.  The angular 2 app uses all of the basics:
+routing, directives, click events, services, models.  It's very similar to the traditional todo sample programs.
 
-I have purposefully made this project as THIN on the gulp side as possible as not to overwhelm people. 
-
-It's a supplement to this article: 
-
-[http://blog.edenmsg.com/angular2-typescript-gulp-and-expressjs/](http://blog.edenmsg.com/angular2-typescript-gulp-and-expressjs/) 
-
-Getting Started, grab the dependencies with:
-
-`npm install`
-
-then run
-
-`gulp`
-
-To run the server do this:
-
+## Run the server
 ```shell
-node dist/server.js
+gulp server
 ```
 
