@@ -1,6 +1,6 @@
 import {Component} from "angular2/core";
-import {Router, RouteConfig, ROUTER_DIRECTIVES} from "angular2/router"
-import {HomeComponent} from "./home.component"
+import {Router, RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
+import {HomeComponent} from "./home.component";
 
 @RouteConfig([
     {path: "/", component: HomeComponent, as: "Home"}
@@ -15,6 +15,5 @@ export class AppComponent {
     constructor(){
         console.log("Here we go");
     }
-
 }
 

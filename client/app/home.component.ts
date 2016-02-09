@@ -2,6 +2,8 @@ import {Component} from "angular2/core";
 import {Link} from "./link";
 import {LinkData} from "./link-data";
 import {LinkDetailComponent} from "./link-detail.component";
+import {OnInit} from "angular2/core";
+import {HTTP_PROVIDERS} from "angular2/http";
 
 @Component({
     selector: "Home",
@@ -69,13 +71,32 @@ import {LinkDetailComponent} from "./link-detail.component";
       right: 5px;
     }
   `],
-    directives: [LinkDetailComponent]
+    directives: [LinkDetailComponent],
+    providers: [
+        HTTP_PROVIDERS,
+        LinkData,
+    ]
 })
 
 export class HomeComponent {
-    public title = "Links";
-    public links = new LinkData().links;
-    public selectedLink:Link;
+    title:string = "Bookmarks";
+    links:Link[];
+    error:any;
+    selectedLink:Link;
+
+    constructor(private linkData:LinkData) {
+    }
+
+    ngOnInit() {
+        this.getLinks();
+    }
+
+    getLinks() {
+        this.linkData.getLinks()
+            .subscribe(
+                links => this.links = links,
+                error => this.error = <any>error);
+    }
 
     onSelect(link:Link) {
         this.selectedLink = link;
