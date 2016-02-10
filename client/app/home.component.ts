@@ -1,9 +1,9 @@
-import {Component} from "angular2/core";
+import {Component,  OnInit} from "angular2/core";
+import {HTTP_PROVIDERS} from "angular2/http";
 import {Link} from "./link";
 import {LinkData} from "./link-data";
 import {LinkDetailComponent} from "./link-detail.component";
-import {OnInit} from "angular2/core";
-import {HTTP_PROVIDERS} from "angular2/http";
+import {LinkFilter} from "./linkfilter";
 
 @Component({
     selector: "Home",
@@ -11,7 +11,18 @@ import {HTTP_PROVIDERS} from "angular2/http";
     <div class="container">
     <div class="list col-sm-6">
         <h1>{{title}}</h1>
-        <ul class="links">
+        <div class="row">
+        <form class="form-horizontal col-sm-12">
+          <div class="form-group">
+            <label for="flink" class="control-label col-sm-2">Filter: </label>
+            <div class="col-sm-10">
+              <input #flink (keyup)="filterLinks(flink.value)" class="form-control" id="flink" type="text"/>
+            </div>
+          </div>
+        </form>
+        </div>
+        <div class="row">
+        <ul class="links row">
           <li *ngFor="#link of links"
             [class.selected]="link === selectedLink"
             (click)="onSelect(link)"
@@ -19,12 +30,12 @@ import {HTTP_PROVIDERS} from "angular2/http";
             <span class="badge">{{link.id}}</span> {{link.name}}
           </li>
         </ul>
+        </div>
     </div>
     <div class="detail col-sm-6">
         <my-link-detail [link]="selectedLink"></my-link-detail>
     </div>
-    </div>
-
+    </div> 
   `,
     styles: [`
     .selected {
@@ -38,7 +49,6 @@ import {HTTP_PROVIDERS} from "angular2/http";
     }
     .links li {
       cursor: pointer;
-      position: relative;
       left: 0;
       background-color: #EEE;
       margin: .5em;
@@ -52,10 +62,6 @@ import {HTTP_PROVIDERS} from "angular2/http";
       background-color: #EEE;
       left: .1em;
     }
-    .links .text {
-      position: relative;
-      top: -3px;
-    }
     .links .badge {
       display: inline-block;
       font-size: small;
@@ -64,7 +70,6 @@ import {HTTP_PROVIDERS} from "angular2/http";
       background-color: #607D8B;
       height: 2.0em;
       margin-right: .8em;
-      border-radius: 4px 0px 0px 4px;
     }
     .detail{
       position: fixed;
@@ -75,16 +80,18 @@ import {HTTP_PROVIDERS} from "angular2/http";
     providers: [
         HTTP_PROVIDERS,
         LinkData,
+        LinkFilter
     ]
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     title:string = "Bookmarks";
+    private allLinks:Link[];
     links:Link[];
     error:any;
     selectedLink:Link;
 
-    constructor(private linkData:LinkData) {
+    constructor(private linkData:LinkData, private linkFilter: LinkFilter) {
     }
 
     ngOnInit() {
@@ -94,12 +101,18 @@ export class HomeComponent {
     getLinks() {
         this.linkData.getLinks()
             .subscribe(
-                links => this.links = links,
+                data => {
+                  this.allLinks = data;
+                  this.links = data;
+                },
                 error => this.error = <any>error);
+    }
+
+    filterLinks(filter:string){
+      this.links = this.linkFilter.transform(this.allLinks, [filter]);
     }
 
     onSelect(link:Link) {
         this.selectedLink = link;
     }
 }
-

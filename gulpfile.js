@@ -40,7 +40,7 @@ gulp.task('build:index', function() {
     var copyJsNPMDependencies = gulp.src(mappedPaths, {
             base: 'node_modules'
         })
-        .pipe(gulp.dest('dist/libs')); 
+        .pipe(gulp.dest('dist/libs'));
     var copyIndex = gulp.src('client/index.html')
         .pipe(gulp.dest('dist'));
     var copyStyle = gulp.src('client/assets/**/*')
@@ -62,16 +62,16 @@ gulp.task('build', function(callback) {
     runSequence('clean', 'build:server', 'build:index', 'build:app', callback);
 });
 
-gulp.task('serve', function (cb) {
+gulp.task('serve', function(cb) {
     nodemon({
-        script  : 'dist/server.js',
-        watch   : 'dist/'		
-        //...add nodeArgs: ['--debug=5858'] to debug 
-        //..or nodeArgs: ['--debug-brk=5858'] to debug at server start
-    }).on('start', function () {
-        setTimeout(function () {
+        script: 'dist/server.js',
+        watch: 'client/*'
+            //...add nodeArgs: ['--debug=5858'] to debug 
+            //..or nodeArgs: ['--debug-brk=5858'] to debug at server start
+    }).on('start', function() {
+        setTimeout(function() {
             livereload.changed();
-        }, 2000); 
+        }, 2000);
     });
 });
 
@@ -79,4 +79,4 @@ gulp.task('server', function(callback) {
     runSequence('build', 'serve', callback);
 });
 
-gulp.task('default', ['build']);
+gulp.task('default', ['server']);
