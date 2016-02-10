@@ -4,12 +4,13 @@ import {Link} from "./link";
 import {LinkData} from "./link-data";
 import {LinkDetailComponent} from "./link-detail.component";
 import {LinkFilter} from "./linkfilter";
+import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
 
 @Component({
     selector: "Home",
     templateUrl: "assets/home.tpl.html",
     styleUrls: ["assets/home.styles.css"],
-    directives: [LinkDetailComponent],
+    directives: [ROUTER_DIRECTIVES, LinkDetailComponent],
     providers: [
         HTTP_PROVIDERS,
         LinkData,
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
     error:any;
     selectedLink:Link;
 
-    constructor(private linkData:LinkData, private linkFilter: LinkFilter) {
+    constructor(private linkData:LinkData, private linkFilter: LinkFilter, private _routeParams: RouteParams) {
     }
 
     ngOnInit() {
@@ -37,6 +38,10 @@ export class HomeComponent implements OnInit {
                 data => {
                   this.allLinks = data;
                   this.links = data;
+                  var selectedId:number = Number(this._routeParams.get("id"));
+                  if(selectedId > 0){
+                      this.selectedLink = data.find(link => link.id === selectedId);
+                  }
                 },
                 error => this.error = <any>error);
     }
@@ -45,7 +50,7 @@ export class HomeComponent implements OnInit {
       this.links = this.linkFilter.transform(this.allLinks, [filter]);
     }
 
-    onSelect(link:Link) {
-        this.selectedLink = link;
-    }
+    // onSelect(link:Link) {
+    //     this.selectedLink = link;
+    // }
 }

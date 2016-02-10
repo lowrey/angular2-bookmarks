@@ -1,0 +1,14 @@
+{
+  "html": {
+    "indent_char": " ",
+    "indent_size": 2,
+    "wrap_attributes": "force",
+    "wrap_attributes_indent_size": 2,
+    "wrap_line_length": 100
+  },
+  "js": {
+    "indent_char": " ",
+    "indent_size": 2,
+    "wrap_line_length": 100
+  }
+}
