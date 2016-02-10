@@ -6,7 +6,7 @@ import {Link} from "./link";
 
 @Component({
     inputs: ["link"],
-    selector: "my-link-detail",
+    selector: "link-detail",
     template: `
     <div *ngIf="link">
       <h2><a href="#" (click)="openTab()">{{link.name}}</a></h2>

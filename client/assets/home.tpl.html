@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="list col-sm-6">
+        <h1>{{title}}</h1>
+        <div class="row">
+            <form class="form-horizontal col-sm-12">
+                <div class="form-group">
+                    <label for="flink" class="control-label col-sm-2">Filter: </label>
+                    <div class="col-sm-10">
+                        <input #flink (keyup)="filterLinks(flink.value)" class="form-control" id="flink" type="text" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <ul class="links row">
+                <li *ngFor="#link of links" [class.selected]="link === selectedLink" (click)="onSelect(link)" class="link">
+                    <span class="badge">{{link.id}}</span> {{link.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="detail col-sm-6">
+        <link-detail [link]="selectedLink"></link-detail>
+    </div>
+</div>

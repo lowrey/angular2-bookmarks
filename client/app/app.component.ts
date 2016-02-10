@@ -6,7 +6,7 @@ import {HomeComponent} from "./home.component";
     {path: "/", component: HomeComponent, as: "Home"}
 ])
 @Component({
-    selector: "my-app",
+    selector: "app",
     template: "<router-outlet></router-outlet>",
     directives: [ROUTER_DIRECTIVES]
 })
