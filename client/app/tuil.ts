@@ -1,13 +1,14 @@
 //Shamelessly stolen from https://github.com/lodash/lodash/blob/4.3.0/lodash.js
-class TuilConsts {
-    static rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|([""])((?:(?!\2)[^\\]|\\.)*?)\2)\]/g;
-    static INFINITY = 1 / 0;
-    static reEscapeChar = /\\(\\)?/g;
-    static reIsDeepProp = /\.|\[(?:[^[\]]*|([""])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
-    static reIsPlainProp = /^\w*$/;
-    static MAX_SAFE_INTEGER = 9007199254740991;
-    static MAX_INTEGER = 1.7976931348623157e+308;
-    static NAN = 0 / 0;
+module TuilConsts {
+    "use strict";
+    export var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|([""])((?:(?!\2)[^\\]|\\.)*?)\2)\]/g;
+    export var INFINITY = 1 / 0;
+    export var reEscapeChar = /\\(\\)?/g;
+    export var reIsDeepProp = /\.|\[(?:[^[\]]*|([""])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
+    export var reIsPlainProp = /^\w*$/;
+    export var MAX_SAFE_INTEGER = 9007199254740991;
+    export var MAX_INTEGER = 1.7976931348623157e+308;
+    export var NAN = 0 / 0;
 }
 
 export class Tuil {
