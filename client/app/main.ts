@@ -8,5 +8,5 @@ import "rxjs/Rx";
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     CORE_DIRECTIVES,
-    provide(LocationStrategy, {useClass: PathLocationStrategy})
+    provide(LocationStrategy, { useClass: PathLocationStrategy })
 ]);

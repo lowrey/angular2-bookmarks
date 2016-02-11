@@ -1,13 +1,15 @@
 import {Component} from "angular2/core";
-import {Router, RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
+import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {HomeComponent} from "./home.component";
 
 @RouteConfig([
-    {path: "/",
+   {
+     path: "/",
      component: HomeComponent,
      as: "Home"
     },
-    {path: "/:id",
+    {
+     path: "/:id",
      component: HomeComponent,
      as: "HomeDetail"
     }

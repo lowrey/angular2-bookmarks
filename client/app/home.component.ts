@@ -1,4 +1,4 @@
-import {Component,  OnInit} from "angular2/core";
+import {Component, OnInit} from "angular2/core";
 import {HTTP_PROVIDERS} from "angular2/http";
 import {Link} from "./link";
 import {LinkData} from "./link-data";
@@ -19,13 +19,13 @@ import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
 })
 
 export class HomeComponent implements OnInit {
-    title:string = "Bookmarks";
-    private allLinks:Link[];
-    links:Link[];
-    error:any;
-    selectedLink:Link;
+    title: string = "Bookmarks";
+    private allLinks: Link[];
+    links: Link[];
+    error: any;
+    selectedLink: Link;
 
-    constructor(private linkData:LinkData, private linkFilter: LinkFilter, private _routeParams: RouteParams) {
+    constructor(private linkData: LinkData, private linkFilter: LinkFilter, private _routeParams: RouteParams) {
     }
 
     ngOnInit() {
@@ -35,19 +35,19 @@ export class HomeComponent implements OnInit {
     getLinks() {
         this.linkData.getLinks()
             .subscribe(
-                data => {
-                  this.allLinks = data;
-                  this.links = data;
-                  var selectedId:number = Number(this._routeParams.get("id"));
-                  if(selectedId > 0){
-                      this.selectedLink = data.find(link => link.id === selectedId);
-                  }
-                },
-                error => this.error = <any>error);
+            data => {
+                this.allLinks = data;
+                this.links = data;
+                var selectedId: number = Number(this._routeParams.get("id"));
+                if (selectedId > 0) {
+                    this.selectedLink = data.find(link => link.id === selectedId);
+                }
+            },
+            error => this.error = <any>error);
     }
 
-    filterLinks(filter:string){
-      this.links = this.linkFilter.transform(this.allLinks, [filter]);
+    filterLinks(filter: string) {
+        this.links = this.linkFilter.transform(this.allLinks, [filter]);
     }
 
     // onSelect(link:Link) {
