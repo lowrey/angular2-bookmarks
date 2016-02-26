@@ -1,4 +1,11 @@
-[
-  {"id": 11, "name": "lowrey.me", "url": "http://lowrey.me/"},
-  {"id": 12, "name": "Mystery", "url": "https://www.youtube.com/watch?v=YQpLNCRIxWA"}
-]
+[{
+  "id": 11,
+  "name": "lowrey.me",
+  "url": "http://lowrey.me/",
+  "notes": "test notes"
+}, {
+  "id": 12,
+  "name": "Mystery",
+  "url": "https://www.youtube.com/watch?v=YQpLNCRIxWA",
+  "notes": "test notes2"
+}]

@@ -20,9 +20,14 @@
       <ul class="links row">
         <li *ngFor="#link of links"
           [class.selected]="link === selectedLink"
-          [routerLink]="['HomeDetail', {id: link.id}]"
           class="link">
+          <span [routerLink]="['HomeDetail', {id: link.id}]">
           <span class="badge">{{link.id}}</span> {{link.name}}
+          </span>
+          <a class="pull-right"
+            [href]="link.url">
+            <span class="glyphicon glyphicon-link"></span>
+          </a>
         </li>
       </ul>
     </div>

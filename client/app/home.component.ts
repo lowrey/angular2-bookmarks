@@ -32,6 +32,10 @@ export class HomeComponent implements OnInit {
         this.getLinks();
     }
 
+    openLink(link) {
+        window.open(link.url, "_blank");
+    }
+
     getLinks() {
         this.linkData.getLinks()
             .subscribe(

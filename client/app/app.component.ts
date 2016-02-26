@@ -25,4 +25,3 @@ export class AppComponent {
         console.log("Here we go");
     }
 }
-
