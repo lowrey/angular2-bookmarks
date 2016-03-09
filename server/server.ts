@@ -12,8 +12,19 @@ app.use("/app", express.static(path.resolve(__dirname, "app")));
 app.use("/libs", express.static(path.resolve(__dirname, "libs")));
 app.use("/assets", express.static(path.resolve(__dirname, "assets")));
 
+app.get("/api/links", (req: express.Request, res: express.Response) => {
+  collection.find({}, (err, items) => {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      items.toArray((err, items2) => res.json(items2));
+    }
+  });
+});
+
 app.get("/api/link/:id", (req: express.Request, res: express.Response) => {
-  collection.findOne({ id: Number(req.params.id) }, (err, item) => {
+  collection.findOne({ _id: Number(req.params.id) }, (err, item) => {
     if (err) {
       res.json(err);
     }
@@ -35,8 +46,24 @@ app.post("/api/link", (req: express.Request, res: express.Response) => {
 });
 
 app.put("/api/link/:id", (req: express.Request, res: express.Response) => {
-  collection.update({ id: Number(req.params.id) }, req.body, (err, result) => {
-    res.json(result);
+  collection.update({ _id: Number(req.params.id) }, req.body, (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+});
+
+app.delete("/api/link/:id", (req: express.Request, res: express.Response) => {
+  collection.remove({ _id: Number(req.params.id) }, (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
   });
 });
 
