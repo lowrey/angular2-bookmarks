@@ -12,7 +12,7 @@ module TuilConsts {
 }
 
 export class Tuil {
-    private static toString(value) {
+    private static toString(value):string {
         // Exit early for strings to avoid a performance hit in some environments.
         if (typeof value == "string") {
             return value;
@@ -28,15 +28,16 @@ export class Tuil {
         var result = [];
         Tuil.toString(str).replace(TuilConsts.rePropName, function(match, num, quote, str) {
             result.push(quote ? str.replace(TuilConsts.reEscapeChar, "$1") : (num || match));
+            return str;
         });
         return result;
     }
 
-    private static baseToPath(value) {
+    private static baseToPath(value):any[] {
         return Array.isArray(value) ? value : Tuil.stringToPath(value);
     }
 
-    private static isKey(value, object) {
+    private static isKey(value, object):boolean {
         if (typeof value == "number") {
             return true;
         }
@@ -45,7 +46,7 @@ export class Tuil {
                 (object != null && value in Object(object)));
     }
 
-    private static baseGet(object, path) {
+    private static baseGet(object, path):any {
         path = Tuil.isKey(path, object) ? [path + ""] : Tuil.baseToPath(path); 
         var index = 0,
             length = path.length;
@@ -56,7 +57,7 @@ export class Tuil {
         return (index && index == length) ? object : undefined;
     }
 
-    public static get(object, path, defaultValue) {
+    public static get(object, path, defaultValue):any {
         var result = object == null ? undefined : Tuil.baseGet(object, path);
         return result === undefined ? defaultValue : result;
     }
