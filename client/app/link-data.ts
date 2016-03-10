@@ -5,28 +5,40 @@ import {Observable}     from "rxjs/Observable";
 
 @Injectable()
 export class LinkData {
-    public links: Link[];
-    public error: any;
+  public links: Link[];
+  public error: any;
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http) {
+  }
 
-    private handleError(error: Response) {
-        console.log(error);
-        return Observable.throw(error.json().error || "Server error");
-    }
+  private handleError(error: Response) {
+    console.log(error);
+    return Observable.throw(error.json().error || "Server error");
+  }
 
-    private url: string = "/assets/testdata.json";
+  private allUrl: string = "/api/links";
+  private url: string = "/api/link/";
 
-    getLinks() {
-        return this.http.get(this.url)
-            .map(res => {
-                return <Link[]>res.json();
-            })
-            .do(data => {
-                return console.log(data);
-            }) // eyeball results in the console
-            .catch(this.handleError);
-    }
+  getLinks() {
+    return this.http.get(this.allUrl)
+      .map(res => {
+        return <Link[]>res.json();
+      })
+      .do(data => {
+        return console.log(data);
+      }) // eyeball results in the console
+      .catch(this.handleError);
+  }
+
+  delete(id: Number) {
+    return this.http.delete(this.url + id)
+      .map(res => {
+        return <Number>res.json() === 1;
+      })
+      .do(data => {
+        return console.log(data);
+      }) // eyeball results in the console
+      .catch(this.handleError);
+  }
 }
 

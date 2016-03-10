@@ -7,54 +7,65 @@ import {LinkFilter} from "./linkfilter";
 import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
 
 @Component({
-    selector: "Home",
-    templateUrl: "assets/home.tpl.html",
-    styleUrls: ["assets/home.styles.css"],
-    directives: [ROUTER_DIRECTIVES, LinkDetailComponent],
-    providers: [
-        HTTP_PROVIDERS,
-        LinkData,
-        LinkFilter
-    ]
+  selector: "Home",
+  templateUrl: "assets/home.tpl.html",
+  styleUrls: ["assets/home.styles.css"],
+  directives: [ROUTER_DIRECTIVES, LinkDetailComponent],
+  providers: [
+    HTTP_PROVIDERS,
+    LinkData,
+    LinkFilter
+  ]
 })
 
 export class HomeComponent implements OnInit {
-    title: string = "Bookmarks";
-    private allLinks: Link[];
-    links: Link[];
-    error: any;
-    selectedLink: Link;
+  title: string = "Bookmarks";
+  private allLinks: Link[];
+  links: Link[];
+  error: any;
+  selectedLink: Link;
 
-    constructor(private linkData: LinkData, private linkFilter: LinkFilter, private _routeParams: RouteParams) {
-    }
+  constructor(private linkData: LinkData, private linkFilter: LinkFilter, private _routeParams: RouteParams) {
+  }
 
-    ngOnInit() {
-        this.getLinks();
-    }
+  ngOnInit() {
+    this.getLinks();
+  }
 
-    openLink(link) {
-        window.open(link.url, "_blank");
-    }
+  openLink(link) {
+    window.open(link.url, "_blank");
+  }
 
-    getLinks() {
-        this.linkData.getLinks()
-            .subscribe(
-            data => {
-                this.allLinks = data;
-                this.links = data;
-                var selectedId: number = Number(this._routeParams.get("id"));
-                if (selectedId > 0) {
-                    this.selectedLink = data.find(link => link.id === selectedId);
-                }
-            },
-            error => this.error = <any>error);
-    }
+  getLinks() {
+    this.linkData.getLinks()
+      .subscribe(
+      data => {
+        this.allLinks = data;
+        this.links = data;
+        var selectedId: number = Number(this._routeParams.get("id"));
+        if (selectedId > 0) {
+          this.selectedLink = data.find(link => link._id === selectedId);
+        }
+      },
+      error => this.error = <any>error);
+  }
 
-    filterLinks(filter: string) {
-        this.links = this.linkFilter.transform(this.allLinks, [filter]);
-    }
+  deleteLink(link) {
+    this.linkData.delete(link._id)
+      .subscribe(
+      data => {
+        if (data === true) {
+          this.getLinks();
+        }
+      },
+      error => this.error = <any>error);
+  }
 
-    // onSelect(link:Link) {
-    //     this.selectedLink = link;
-    // }
+  filterLinks(filter: string) {
+    this.links = this.linkFilter.transform(this.allLinks, [filter]);
+  }
+
+  // onSelect(link:Link) {
+  //     this.selectedLink = link;
+  // }
 }

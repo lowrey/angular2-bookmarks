@@ -6,7 +6,7 @@ import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from "angular2
 import "rxjs/Rx";
 
 bootstrap(AppComponent, [
-    ROUTER_PROVIDERS,
-    CORE_DIRECTIVES,
-    provide(LocationStrategy, { useClass: PathLocationStrategy })
+  ROUTER_PROVIDERS,
+  CORE_DIRECTIVES,
+  provide(LocationStrategy, { useClass: PathLocationStrategy })
 ]);

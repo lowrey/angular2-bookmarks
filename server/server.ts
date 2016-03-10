@@ -70,7 +70,7 @@ app.delete("/api/link/:id", (req: express.Request, res: express.Response) => {
 app.get("/api/*", (req: express.Request, res: express.Response) => {
   res.send("welcome to the api");
 });
-app.get("/", (req: express.Request, res: express.Response) => {
+app.get("/*", (req: express.Request, res: express.Response) => {
   res.sendFile(path.resolve(__dirname, "index.html"));
 });
 

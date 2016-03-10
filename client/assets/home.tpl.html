@@ -21,16 +21,20 @@
         <li *ngFor="#link of links"
           [class.selected]="link === selectedLink"
           class="link">
-          <span [routerLink]="['HomeDetail', {id: link.id}]">
-          <span class="badge">{{link.id}}</span> {{link.name}}
+          <span [routerLink]="['HomeDetail', {id: link._id}]">
+          <span class="badge">{{link._id}}</span> {{link.name}}
           </span>
           <a class="pull-right"
             [href]="link.url">
             <span class="glyphicon glyphicon-link"></span>
           </a>
           <a class="pull-right"
-            [routerLink]="['HomeDetail', {id: link.id}]">
+            [routerLink]="['HomeDetail', {id: link._id}]">
             <span class="glyphicon glyphicon-edit"></span>
+          </a>
+          <a class="pull-right"
+            (click)="deleteLink(link)">
+            <span class="glyphicon glyphicon-trash"></span>
           </a>
         </li>
       </ul>

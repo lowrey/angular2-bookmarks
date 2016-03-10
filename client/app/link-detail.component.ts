@@ -2,14 +2,14 @@ import {Component} from "angular2/core";
 import {Link} from "./link";
 
 @Component({
-    inputs: ["link"],
-    selector: "link-detail",
-    template: `
+  inputs: ["link"],
+  selector: "link-detail",
+  template: `
     <div *ngIf="link">
       <h2><a href="#" (click)="openTab()">{{link.name}}</a></h2>
       <!--
       <div>
-        <label>id: </label>{{link.id}}
+        <label>id: </label>{{link._id}}
       </div>
       -->
       <div>
@@ -32,9 +32,9 @@ import {Link} from "./link";
   `,
 })
 export class LinkDetailComponent {
-    public link: Link;
+  public link: Link;
 
-    openTab() {
-        window.open(this.link.url, "_blank");
-    }
+  openTab() {
+    window.open(this.link.url, "_blank");
+  }
 }

@@ -1,6 +1,6 @@
 export interface Link {
-    id: number;
-    name: string;
-    url: string;
-    notes: string;
+  _id: number;
+  name: string;
+  url: string;
+  notes: string;
 }
