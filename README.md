@@ -5,6 +5,5 @@ routing, directives, click events, services, models.  It's very similar to the t
 
 ## Run the server
 ```shell
-gulp server
+gulp
 ```
-
