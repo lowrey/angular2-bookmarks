@@ -36,6 +36,11 @@
      height: 2.0em;
      margin-right: .8em;
  }
+
+ .add-button {
+     color: white;
+     background-color: #607D8B;
+ }
  
  .detail {
      position: fixed;

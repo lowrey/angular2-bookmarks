@@ -22,7 +22,7 @@
           [class.selected]="link === selectedLink"
           class="link">
           <span [routerLink]="['HomeDetail', {id: link._id}]">
-          <span class="badge">{{link._id}}</span> {{link.name}}
+            <span class="badge">{{link._id}}</span> {{link.name}}
           </span>
           <a class="pull-right"
             [href]="link.url">
@@ -36,6 +36,14 @@
             (click)="deleteLink(link)">
             <span class="glyphicon glyphicon-trash"></span>
           </a>
+        </li>
+        <li class="link">
+          <button type="submit"
+            (click)=addLink(newLink.value)
+            class="btn btn-default add-button glyphicon glyphicon-plus col-xs-1"></button>
+          <input #newLink
+            class="col-xs-11"
+            type="text" />
         </li>
       </ul>
     </div>

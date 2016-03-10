@@ -50,6 +50,15 @@ export class HomeComponent implements OnInit {
       error => this.error = <any>error);
   }
 
+  addLink(linkName) {
+    this.linkData.add({ name: linkName, notes: "", url: "" })
+      .subscribe(
+      data => {
+        this.getLinks();
+      },
+      error => this.error = <any>error);
+  }
+
   deleteLink(link) {
     this.linkData.delete(link._id)
       .subscribe(
