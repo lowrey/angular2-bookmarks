@@ -1,0 +1,31 @@
+<div class="col-xs-9"
+  *ngIf="link">
+  <h2><a href="#" (click)="openTab()">{{link.name}}</a></h2>
+  <form (ngSubmit)="onSubmit(linkForm)"
+    #linkForm="ngForm">
+    <div class="form-group">
+      <label for="url">url: </label>
+      <input [(ngModel)]="link.url"
+        class="form-control"
+        [(ngModel)]="link.url"
+        #url="ngForm"
+        placeholder="url" />
+    </div>
+    <div class="form-group">
+      <label for="notes">notes: </label>
+      <div>
+        <textarea [(ngModel)]="link.notes"
+          class="form-control"
+          [(ngModel)]="link.notes"
+          #notes="ngForm"
+          placeholder="notes">
+        </textarea>
+      </div>
+    </div>
+    <button type="submit"
+      class="btn btn-default">Submit</button>
+  </form>
+  <div class="alert alert-success col-xs-6"
+    [hidden]="!status"
+    role="alert">{{status}}</div>
+</div>

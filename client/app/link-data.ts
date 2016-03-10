@@ -1,7 +1,7 @@
 import {Injectable} from "angular2/core";
 import {Link} from "./link";
 import {Http, Response, Headers} from "angular2/http";
-import {Observable}     from "rxjs/Observable";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class LinkData {
@@ -30,12 +30,25 @@ export class LinkData {
       .catch(this.handleError);
   }
 
-  add(link: Object) {
+  add(link: any) {
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     return this.http.post(this.url, JSON.stringify(link), { headers: headers })
       .map(res => {
         return res.json();
+      })
+      .do(data => {
+        return console.log(data);
+      }) // eyeball results in the console
+      .catch(this.handleError);
+  }
+
+  edit(link: any) {
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    return this.http.put(this.url + link._id, JSON.stringify(link), { headers: headers })
+      .map(res => {
+        return <Number>res.json() === 1;
       })
       .do(data => {
         return console.log(data);

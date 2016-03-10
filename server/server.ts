@@ -5,7 +5,7 @@ var database = require("tingodb")().Db;
 var port: number = process.env.PORT || 3000;
 var app = express();
 app.use(bodyparser.json());
-var db = new database(path.resolve(__dirname, "assets"), {});
+var db = new database(path.resolve(__dirname, "assets/db"), {});
 var collection = db.collection("links");
 
 app.use("/app", express.static(path.resolve(__dirname, "app")));
